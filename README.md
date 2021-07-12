@@ -9,7 +9,7 @@
 6. Summary
 
 ## Understanding and Loading Data
-The first file we are going to explore is *Pollution.csv*, which contains data on 60 U.S. cities with variables describe below
+The first file we are going to explore is *pollution.csv*, which contains data on 60 U.S. cities with variables describe below
 
 * City = Name of the city.
 * Mort = Total age-adjusted mortality from all causes, in deaths per 100,000 population 
