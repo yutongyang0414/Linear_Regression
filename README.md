@@ -123,4 +123,10 @@ Multiple R-squared: 0.716,Adjusted R-squared: 0.695
 
 F-statistic: 34.1 on 4 and 54 DF, p-value: 3.48e-14
 
-There are no big problems apparent on the residual plots of this fit (not shown). In conclusion, after accounting for the effects of the climate and socioeconomic variables, there is strong evidence showing that log(SO2) has linear relationship with mortality. With the same values of other variables, if log(SO2) increases 1 unit, mortality will increase 19.688 deaths per 100,000 population.
+```
+plot(fitted.values(model2.r),residuals(model2.r),pch=16,xlab="Fitted Value",ylab="Residual",main=" ")
+abline(h=0,lty=2)
+```
+![Residue plot](https://user-images.githubusercontent.com/87252001/125383147-f5806800-e364-11eb-8d8c-971f23f62550.png)
+
+There are no big problems apparent on the residual plots of this fit. In conclusion, after accounting for the effects of the climate and socioeconomic variables, there is strong evidence showing that log(SO2) has linear relationship with mortality. With the same values of other variables, if log(SO2) increases 1 unit, mortality will increase 19.688 deaths per 100,000 population.
