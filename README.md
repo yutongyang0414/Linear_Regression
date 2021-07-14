@@ -4,9 +4,8 @@
 1. Understanding and Loading Data
 2. Visualization and Prelimarary Exploration
 3. Diagnostic Plots
-4. Model Comparisons
-5. Sequential Variable Selection Algorithm
-6. Summary
+4. Sequential Variable Selection Algorithm
+5. Summary
 
 ## Understanding and Loading Data
 The first file we are going to explore is *pollution.csv*, which contains data on 60 U.S. cities with variables describe below
@@ -19,6 +18,7 @@ The first file we are going to explore is *pollution.csv*, which contains data o
 * NOX = Relative pollution potential* of oxides of nitrogen
 * SO2 = Relative pollution potential of sulfur dioxide
 
+## Visualization and Prelimarary Exploration
 Let's look at a matrix of pairwise scatterplots first to see if some transformation of the variables might be necessary.
 
 ```
@@ -45,6 +45,7 @@ Let's ft a full model initially with all the variables and look at case statisti
 
 ![Full model](https://user-images.githubusercontent.com/87252001/125360346-bbe63780-e339-11eb-8793-00241d46f7a6.png)
 
+## Diagnostic Plots
 ```
 model1 <- lm(Mort~Precip+Educ+NonWhite+log(NOX)+log(SO2), data=US.Cities)
 summary(model1)
@@ -123,10 +124,21 @@ Multiple R-squared: 0.716,Adjusted R-squared: 0.695
 
 F-statistic: 34.1 on 4 and 54 DF, p-value: 3.48e-14
 
+
 ```
 plot(fitted.values(model2.r),residuals(model2.r),pch=16,xlab="Fitted Value",ylab="Residual",main=" ")
 abline(h=0,lty=2)
 ```
 ![Residue plot](https://user-images.githubusercontent.com/87252001/125383147-f5806800-e364-11eb-8d8c-971f23f62550.png)
 
-There are no big problems apparent on the residual plots of this fit. In conclusion, after accounting for the effects of the climate and socioeconomic variables, there is strong evidence showing that log(SO2) has linear relationship with mortality. With the same values of other variables, if log(SO2) increases 1 unit, mortality will increase 19.688 deaths per 100,000 population.
+The above residual plot suggests that variation in residuals is constant across all range of the predictor variables. Thus, the assumption of homoscedasticity seems reasonable. In addition, there is no strong evidence of systematic lack of fit and no serious outliers. Correspondingly, we can generate QQ plot as below.
+```
+qqnorm(residuals(model2.r),pch=16,main=" ")
+```
+
+![qq plot](https://user-images.githubusercontent.com/87252001/125549797-60c82ba9-534e-4e34-becc-7c80070242b5.png)
+
+The above QQ plot further implies that there is no obvious evidence for non-normal distribution of the residuals.
+
+## Summary
+In this project, we explored the data and fitted a regression model by investigating serveral key concepts, including diagnostic plots, multicollinearity, model selection and etc. Based on our analyses above, we come up with a finalized model where Precip, Educ, NonWhite and log(SO2) are the appropriate variables to best predict the response variable Mort.  In conclusion, after accounting for the effects of the climate and socioeconomic variables, there is strong evidence showing that log(SO2) has linear relationship with mortality. With the same values of other variables, if log(SO2) increases 1 unit, mortality will increase 19.688 deaths per 100,000 population.
